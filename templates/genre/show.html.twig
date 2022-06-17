@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genre info{% endblock %}
+
+{% block body %}
+    <h1>{{genre}}</h1>
+   
+   <h2>Films by genre</h2>
+
+    {% if genre.films | length > 0 %}
+
+    <table class="table table-hover">  
+        {%for film in genre.films %}
+            <tr>
+            <td><a href="{{path('show_film', {'id':film.id}) }}"> {{film}} </a> </td>
+            </tr>  
+        {%endfor%}
+    </table>
+    {% else %}
+        <p> No films to show </p>
+     {% endif %}
+{% endblock %}
+

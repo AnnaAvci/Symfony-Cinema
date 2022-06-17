@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film info{% endblock %}
+
+{% block body %}
+
+    <h1>{{film}}</h1>
+    <p>
+    <img src="{{film.posterFilm}}" width="300" height="400" alt> <br>
+    <strong>Genres:</strong> {{film.genres | join(' ,')}} <br>
+    <strong>Director:</strong> <a href="{{path('show_director', {'id': film.director.id}) }}">{{film.director}} </a><br>
+    <strong>Release date:</strong> {{film.dateFilm | date('d/m/Y')}} <br>
+    <strong>Running time:</strong> {{film.lengthFilm}} minutes<br>
+    <strong>Plot summary:</strong> {{film.summary}} <br>
+
+    <h2>Actors and roles</h2>
+    <table class="table table-hover">
+        {% for casting in film.castings %}
+        <tr>
+            <td><a href="{{path('show_actor', {'id': casting.actor.id}) }}">{{casting.actor}} </a></td>
+            <td>as</td>
+            <td><a href="{{path('show_role', {'id': casting.role.id}) }}">{{casting.role}}</a></td>
+           
+        </tr>   
+        {% endfor %}
+    </table>
+   
+{% endblock %}
