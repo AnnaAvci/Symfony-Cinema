@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actors{% endblock %}
+
+{% block body %}
+<h1>All actors</h1>
+
+<a class="btn btn-success" href="{{path('add_actor')}}">Add an actor</a>
+
+<p>There are {{actors|length }} actors</p>
+
+<table class="table table-hover">      
+         {%for  actor in actors %}
+         <tr>
+            <td><a href="{{path('show_actor', {'id':actor.id}) }}"> {{actor}}</a> </td>
+            <td><a href="{{path('delete_actor', {'id':actor.id}) }}">Delete</a> </td>
+           <td> <a href="{{path('update_actor', {'id':actor.id}) }}">Edit</a> <br> </td>
+          </tr>
+         {% endfor %}
+</table>
+
+{% endblock %}
+

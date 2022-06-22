@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Directors{% endblock %}
+
+{% block body %}
+<h1>All directors</h1>
+
+<a class="btn btn-success" href="{{path('add_director')}}">Add a director</a>
+
+<p>There are {{directors|length }} directors</p>
+
+<table class="table table-hover">      
+         {%for  director in directors %}
+         <tr>
+            <td><a href="{{path('show_director', {'id':director.id}) }}"> {{director}}</a> </td>
+            <td><a href="{{path('delete_director', {'id':director.id}) }}">Delete</a> </td>
+           <td> <a href="{{path('update_director', {'id':director.id}) }}">Edit</a> <br> </td>
+          </tr>
+         {% endfor %}
+</table>
+
+{% endblock %}

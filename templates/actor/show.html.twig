@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actor info{% endblock %}
+
+{% block body %}
+    <h1>{{actor}}</h1>
+    <p>
+        <strong>Date of birth:</strong> {{actor.dobActor | date('d/m/Y')}}
+         <h2>Films and roles</h2>
+    <table class="table table-hover">
+
+        {% for casting in actor.castings %}
+        <tr>
+            <td><a href="{{path('show_role', {'id': casting.role.id}) }}">{{casting.role}} </a></td>
+            <td>in</td>
+            <td><a href="{{path('show_film', {'id': casting.film.id}) }}">{{casting.film}}</a></td>
+           
+        </tr>   
+        {% endfor %}
+    </table>
+    </p>
+{% endblock %}

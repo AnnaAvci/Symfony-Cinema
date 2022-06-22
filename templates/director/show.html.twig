@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Director info{% endblock %}
+
+{% block body %}
+    <h1>{{director}}</h1>
+    <p>
+        <strong>Date of birth:</strong> {{director.dobDirector | date('d/m/Y')}}
+    </p>
+    <h2>Filmography</h2>
+
+    {% if director.films | length > 0 %}
+        {%for film in director.films %}
+           <a href="{{path('show_film', {'id':film.id}) }}"> {{film}} </a> <br>
+        {%endfor%}
+    {% else %}
+        <p> No films to show </p>
+     {% endif %}
+{% endblock %}
